@@ -1,41 +1,44 @@
 package memoryDs;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 public class segment {
-	private String segmentName;
-	private int segmentBase;
-	private int SegmentLimit;
+	private SimpleStringProperty  segmentName;
+	private SimpleIntegerProperty segmentBase;
+	private SimpleIntegerProperty SegmentLimit;
 
 	//CONSTRUCTOR
 	public segment(String segmentName, int segmentLimit) {
-		this.segmentName = segmentName;
-		this.SegmentLimit = segmentLimit;
-		this.segmentBase = 0;
+		this.segmentName = new SimpleStringProperty(segmentName);
+		this.SegmentLimit = new SimpleIntegerProperty(segmentLimit);
+		this.segmentBase = new SimpleIntegerProperty(0);
 		
 	}
 
 	public String getSegmentName() {
-		return segmentName;
+		return segmentName.get();
 	}
 
 	public void setSegmentName(String segmentName) {
-		this.segmentName = segmentName;
+		this.segmentName = new SimpleStringProperty(segmentName);
 	}
 
 	public int getSegmentBase() {
-		return segmentBase;
+		return segmentBase.get();
 	}
 
 	public void setSegmentBase(int segmentBase) {
-		this.segmentBase = segmentBase;
+		this.segmentBase = new SimpleIntegerProperty(segmentBase);
 	}
 
 	public int getSegmentLimit() {
-		return SegmentLimit;
+		return SegmentLimit.get();
 	}
 
 	public void setSegmentLimit(int segmentLimit) {
-		SegmentLimit = segmentLimit;
+		SegmentLimit = new SimpleIntegerProperty(segmentLimit);
 	}
 
-
+	
 }
