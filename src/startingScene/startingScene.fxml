@@ -38,8 +38,8 @@
                   </JFXTextField>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <JFXCheckBox fx:id="firstFiit" prefHeight="18.0" prefWidth="80.0" text="First Fit" />
-                        <JFXCheckBox fx:id="bestFit" text="Best Fit" />
+                        <JFXCheckBox fx:id="firstFiit" onAction="#firstFitChecked" prefHeight="18.0" prefWidth="80.0" text="First Fit" />
+                        <JFXCheckBox fx:id="bestFit" onAction="#bestfitChecked" text="Best Fit" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER">

@@ -1,22 +1,32 @@
 package startingScene;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXTextField;
 
 import application.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
-public class startingSceneController  implements Initializable  {
+
+import javafx.scene.image.ImageView;
+import memoryDs.hole;
+
+
+public class startingSceneController  {
 
     @FXML
     private ImageView image;
+    @FXML
+    private JFXCheckBox firstFiit;
+
+    @FXML
+    private JFXCheckBox bestFit;
     
     @FXML
     private JFXTextField memorySize;
@@ -32,22 +42,33 @@ public class startingSceneController  implements Initializable  {
 
     @FXML
     private JFXButton enterHole;
-
+    private List<hole> holes = new ArrayList<hole>();
 
     @FXML
     void enterHole(ActionEvent event) {
+    	hole h = new hole(Integer.parseInt(holeStartAdress.getText()),Integer.parseInt(holeSize.getText()));
+    	holes.add(h);
 
     }
 
     @FXML
     void start(ActionEvent event) {
+    	
         Main.showMainScene();
     }
 
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-	
-	}
+    @FXML
+    void bestfitChecked(ActionEvent event) {
+    	firstFiit.setSelected(false);
+
+    }
+
+    @FXML
+    void firstFitChecked(ActionEvent event) {
+    	bestFit.setSelected(false);
+
+    }
+
+
 
 }

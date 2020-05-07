@@ -5,9 +5,9 @@ import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
-import startingScene.startingSceneController;
+
 import javafx.scene.Scene;
-import javafx.scene.layout.Border;
+
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
@@ -20,7 +20,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage)
 	{
-		this.primaryStage=primaryStage;
+		this.setPrimaryStage(primaryStage);
 		mainLayout=new BorderPane();
 	    Scene scene = new Scene(mainLayout,836,549);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());		  
@@ -55,5 +55,13 @@ public class Main extends Application {
 	
 	public static void main(String[] args) {
 		launch(args);
+	}
+
+	public Stage getPrimaryStage() {
+		return primaryStage;
+	}
+
+	public void setPrimaryStage(Stage primaryStage) {
+		this.primaryStage = primaryStage;
 	}
 }
