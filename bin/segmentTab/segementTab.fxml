@@ -11,9 +11,9 @@
          <center>
             <TableView fx:id="segmentTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
               <columns>
-                <TableColumn prefWidth="75.0" text="Name" />
-                <TableColumn prefWidth="75.0" text="Base" />
-                  <TableColumn prefWidth="75.0" text="Limit" />
+                <TableColumn fx:id="name" prefWidth="75.0" text="Name" />
+                <TableColumn fx:id="base" prefWidth="75.0" text="Base" />
+                  <TableColumn fx:id="limit" prefWidth="75.0" text="Limit" />
               </columns>
             </TableView>
          </center>
