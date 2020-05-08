@@ -29,6 +29,12 @@ public class segmentTableController {
 
     private ObservableList<segment> segments = FXCollections.observableArrayList();
     
+	public ObservableList<segment> getSegments() {
+		return segments;
+	}
+	public void setSegments(ObservableList<segment> segments) {
+		this.segments.addAll(segments);
+	}
 	public  void updateTable()
 	{
 		name.setCellValueFactory(new PropertyValueFactory<>("segmentName"));
@@ -37,12 +43,5 @@ public class segmentTableController {
 		segmentTable.setItems(segments);
 		
 	}
-	public  void setSegmentList(List<segment> segs)
-	{
-		segments.addAll(segs);
-		
-	}
-
 	    
-
 }
