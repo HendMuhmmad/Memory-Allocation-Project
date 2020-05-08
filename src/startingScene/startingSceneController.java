@@ -1,9 +1,10 @@
 package startingScene;
 
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
@@ -12,14 +13,19 @@ import com.jfoenix.controls.JFXTextField;
 import application.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
-
+import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import memoryDs.hole;
 
 
-public class startingSceneController  {
-
+public class startingSceneController implements Initializable {
+	
+	@FXML
+    private HBox mainHbox;
+	
     @FXML
     private ImageView image;
     @FXML
@@ -42,6 +48,8 @@ public class startingSceneController  {
 
     @FXML
     private JFXButton enterHole;
+    @FXML
+    private AnchorPane imgpane;
     private List<hole> holes = new ArrayList<hole>();
 
     @FXML
@@ -68,6 +76,16 @@ public class startingSceneController  {
     	bestFit.setSelected(false);
 
     }
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		//image.fitWidthProperty().bind(imgpane.widthProperty());
+		image.fitHeightProperty().bind(imgpane.heightProperty());
+		//image.autosize();
+		//image.fitWidthProperty().
+		 
+	}
 
 
 
