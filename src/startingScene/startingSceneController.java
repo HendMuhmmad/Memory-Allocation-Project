@@ -15,7 +15,9 @@ import javafx.fxml.FXML;
 
 
 import javafx.scene.image.ImageView;
-import memoryDs.hole;
+import memoryDs.holes;
+//import memoryDs.hole;
+import memoryDs.operate;
 
 
 public class startingSceneController  {
@@ -42,19 +44,39 @@ public class startingSceneController  {
 
     @FXML
     private JFXButton enterHole;
-    private List<hole> holes = new ArrayList<hole>();
+    ArrayList<holes> holeList = new ArrayList<holes> ();
+    operate oper;
 
     @FXML
     void enterHole(ActionEvent event) {
-    	hole h = new hole(Integer.parseInt(holeStartAdress.getText()),Integer.parseInt(holeSize.getText()));
-    	holes.add(h);
-
+    	holeList.add(new holes(Integer.parseInt(holeStartAdress.getText()) , Integer.parseInt(holeSize.getText())));
     }
-
+ 
     @FXML
     void start(ActionEvent event) {
+    	holeList.add(new holes(Integer.parseInt(holeStartAdress.getText()) , Integer.parseInt(holeSize.getText())));
+    	oper = new operate(Integer.parseInt(memorySize.getText()));
+    	if(oper.SizeOfHoles(holeList) <=oper.getMemorySize())
+    	{
+    		if(firstFiit.isSelected())
+    		{
+    			oper.setType(true);
+    		}
+    		else if (bestFit.isSelected())
+    		{
+    			oper.setType(false);
+    		}
+    			
+    		Main.showMainScene(oper);
+    	}
+    	else
+    	{
+    		holeList.clear();
+    		Main.showAlertStage("Exceeded Memory Limit");
+    	}
     	
-        Main.showMainScene();
+    	
+        
     }
 
     @FXML

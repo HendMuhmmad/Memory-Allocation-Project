@@ -1,26 +1,31 @@
 package noPlaceError;
 
-import com.jfoenix.controls.JFXTextField;
 
+
+import application.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import mainScene.mainSceneController;
+import javafx.scene.control.Label;
+
 
 public class errorController {
 
     @FXML
-    private JFXTextField processName;
+    private Label warningText;
 
-    @FXML
-    void DeallocateProcess(ActionEvent event) {
 
-    }
 
     @FXML
     void close(ActionEvent event) {
     	
-    	mainSceneController.closeErrorBox();
+    	Main.closeErrorBox();
 
     }
+   public void setWarning(String messeage) {
+    	
+    	warningText.setText(messeage);
+
+    }
+    
 
 }
