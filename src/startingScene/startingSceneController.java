@@ -80,11 +80,6 @@ public class startingSceneController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		//image.fitWidthProperty().bind(imgpane.widthProperty());
-		//image.fitHeightProperty().bind(imgpane.heightProperty());
-		//image.autosize();
-		//image.fitWidthProperty().
-		//imgpane.setPrefSize(mainHbox.getPrefWidth()/2, mainHbox.getPrefHeight());
 		image = new ImageView("/startingScene/tech_brush_by_dayzee_by_dariadz_d8xnsi6-pre.jpg");
 		image.setBlendMode(BlendMode.SRC_OVER);
 		image.setPreserveRatio(false);

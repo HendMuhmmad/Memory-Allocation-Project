@@ -85,6 +85,6 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </HBox.margin>
       </VBox>
-      <Pane fx:id="imgpane" prefHeight="564.0" prefWidth="466.0" />
+      <Pane fx:id="imgpane" prefHeight="564.0" prefWidth="556.0" HBox.hgrow="ALWAYS" />
    </children>
 </HBox>
