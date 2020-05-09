@@ -4,19 +4,15 @@
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
-<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <HBox fx:id="mainHbox" alignment="CENTER" prefHeight="564.0" prefWidth="836.0" style="-fx-background-color: #1A2439;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="startingScene.startingSceneController">
    <children>
-      <VBox alignment="CENTER" prefHeight="524.0" prefWidth="414.0" style="-fx-background-color: #1F6074;" HBox.hgrow="ALWAYS">
+      <VBox alignment="CENTER" prefHeight="524.0" prefWidth="510.0" style="-fx-background-color: #1F6074;" HBox.hgrow="ALWAYS">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="38.0" prefWidth="291.0" text="Memory Size and Holes Entry" textFill="WHITE">
                <VBox.margin>
@@ -89,17 +85,6 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </HBox.margin>
       </VBox>
-      <AnchorPane fx:id="imgpane" prefHeight="564.0" prefWidth="365.0" HBox.hgrow="ALWAYS">
-         <children>
-            <ImageView fx:id="image" fitHeight="564.0" fitWidth="414.0" opacity="0.45" pickOnBounds="true">
-               <image>
-                  <Image url="@tech_brush_by_dayzee_by_dariadz_d8xnsi6-pre.jpg" />
-               </image>
-               <viewport>
-                  <Rectangle2D />
-               </viewport>
-            </ImageView>
-         </children>
-      </AnchorPane>
+      <Pane fx:id="imgpane" prefHeight="564.0" prefWidth="466.0" />
    </children>
 </HBox>
