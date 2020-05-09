@@ -1,1 +1,125 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.tab-header-background{
+	-fx-background-color: #2E4256  ;
+    
+
+}
+
+
+.tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
+    -fx-border-color: transparent;
+}
+
+.tab-pane{
+	-fx-background-color:  #1A2439;
+	-fx-background-insets: 0 20 0 20;
+	-fx-padding: 0 20 0 20;
+}	
+
+.tab:hover
+{
+	-fx-background-color:#6995A2;
+}
+
+
+
+.tab:selected
+{
+	-fx-border-style:  solid none ;
+	-fx-border-radius: 0;
+	-fx-border-color: transparent transparent #48e5ae transparent;
+
+	-fx-border-width: 3.5;
+}
+
+.tab
+{
+	
+	-fx-background-color:  #46636C;
+	-fx-font-size: 15;
+	-fx-alignment: center ;
+	-fx-padding: 10;
+}
+ .tab .tab-label
+{
+	
+	-fx-text-fill: #ffffff;
+	-fx-size: 30;
+	
+}
+
+
+ .tab-pane .label
+{	
+	-fx-text-fill: #ffffff;
+	-fx-font-size: 15;
+	
+}
+
+.text-field
+{
+	-fx-text-fill: #ffffff;
+	-fx-font-size: 15;
+	-fx-padding: 10;
+	
+}
+
+
+.table-row-cell {
+    -fx-background-color: transparent ;
+    -fx-text-fill:#ffffff;
+     	/*-fx-background-radius: 80;*/
+     -fx-alignment: center ;
+}
+.table-cell {
+
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 15;
+    -fx-text-alignment: center ;
+    -fx-alignment: center ;
+    -fx-border-color: transparent ;
+    
+}
+
+
+
+.table-view 
+{
+	-fx-background-color:  #2E4256;
+		/*-fx-background-radius: 80;*/
+	-fx-pref-width: 500;
+	 
+}
+
+
+.table-view  .label
+{
+	-fx-text-fill:  #ffffff;
+	-fx-alignment: center ;
+	-fx-text-alignment: center;
+	-fx-font-size: 15;
+	
+}
+.table-view .column-header {
+	-fx-text-alignment: center;
+	-fx-alignment: center ;
+	-fx-padding: 10 10 10 10;
+}
+.table-view .column-header-background
+{
+	
+    /*-fx-background-radius: 80;*/
+    -fx-background-color: transparent;
+	-fx-background-insets: 10 10 10 10;
+	-fx-padding: 0 0 10 0 ;
+	-fx-border-color: transparent transparent  #48e5ae transparent;
+    -fx-border-width: 0 0 3 0;
+    -fx-border-insets: 15;
+    
+}
+.table-view .column-header , .table-view .filler
+{
+	-fx-size: 30;
+	-fx-border-width: 10 10 10 10;
+	-fx-background-color: transparent ;
+}

@@ -99,9 +99,9 @@ public class mainSceneController {
 
     @FXML
     void showSegmentsEntry(ActionEvent event) {
-    	segmentName.setVisible(true);
-		segmentSize.setVisible(true);
-		segmentLabel.setVisible(true);
+    	segmentName.setDisable(false);
+		segmentSize.setDisable(false);
+		segmentLabel.setDisable(false);
 
     }
     @FXML
@@ -150,8 +150,18 @@ public class mainSceneController {
 	    	}
 	    	else {
 
+<<<<<<< HEAD
 
 	    	}*/
+
+	    	
+
+	    	
+	    	segmentName.setDisable(true);
+			segmentSize.setDisable(true);
+			segmentLabel.setDisable(true);
+
+
 		    
 		} 
     public void deleteTab(String tabName)

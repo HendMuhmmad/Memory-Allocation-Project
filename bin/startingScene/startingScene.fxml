@@ -5,70 +5,86 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="549.0" prefWidth="836.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="startingScene.startingSceneController">
+<HBox fx:id="mainHbox" alignment="CENTER" prefHeight="564.0" prefWidth="836.0" style="-fx-background-color: #1A2439;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="startingScene.startingSceneController">
    <children>
-      <Label prefHeight="38.0" prefWidth="162.0" text="Memory Size aand Holes Entry">
-         <VBox.margin>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </VBox.margin></Label>
-      <HBox alignment="CENTER" prefHeight="344.0" prefWidth="600.0">
+      <VBox alignment="CENTER" prefHeight="524.0" prefWidth="489.0" style="-fx-background-color: #1F6074;" HBox.hgrow="ALWAYS">
          <children>
-            <VBox alignment="CENTER" prefHeight="304.0" prefWidth="242.0">
-               <children>
-                  <JFXTextField fx:id="memorySize" alignment="TOP_LEFT" promptText="Memory Size" unFocusColor="#838282">
-                     <VBox.margin>
-                        <Insets bottom="30.0" left="20.0" right="40.0" top="30.0" />
-                     </VBox.margin>
-                  </JFXTextField>
-                  <JFXTextField fx:id="holeStartAdress" alignment="TOP_LEFT" promptText="Hole Starting Adress">
-                     <VBox.margin>
-                        <Insets bottom="20.0" left="20.0" right="40.0" top="20.0" />
-                     </VBox.margin>
-                  </JFXTextField>
-                  <JFXTextField fx:id="holeSize" alignment="TOP_LEFT" promptText="Hole Size">
-                     <VBox.margin>
-                        <Insets bottom="20.0" left="20.0" right="40.0" top="20.0" />
-                     </VBox.margin>
-                  </JFXTextField>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <JFXCheckBox fx:id="firstFiit" onAction="#firstFitChecked" prefHeight="18.0" prefWidth="80.0" text="First Fit" />
-                        <JFXCheckBox fx:id="bestFit" onAction="#bestfitChecked" text="Best Fit" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER">
-                     <children>
-                        <JFXButton fx:id="enterHole" buttonType="RAISED" onAction="#enterHole" prefHeight="25.0" prefWidth="115.0" text="Enter Hole">
-                           <HBox.margin>
-                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                           </HBox.margin>
-                        </JFXButton>
-                        <JFXButton fx:id="done" buttonType="RAISED" onAction="#start" prefHeight="25.0" prefWidth="115.0" text="Done">
-                           <HBox.margin>
-                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                           </HBox.margin>
-                        </JFXButton>
-                     </children>
-                  </HBox>
-               </children>
-               <HBox.margin>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="38.0" prefWidth="394.0" text="Memory Size and Holes Entry" textFill="WHITE">
+               <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-               </HBox.margin>
-            </VBox>
-            <Pane prefHeight="344.0" prefWidth="310.0">
+               </VBox.margin>
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="memorySize" alignment="TOP_LEFT" focusColor="#48e5ae" labelFloat="true" promptText="Memory Size" style="-fx-prompt-text-fill: #cccccc;" unFocusColor="#cccccc">
+               <VBox.margin>
+                  <Insets bottom="30.0" left="20.0" right="40.0" top="30.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="holeStartAdress" alignment="TOP_LEFT" focusColor="#48e5ae" labelFloat="true" promptText="Hole Starting Adress" style="-fx-prompt-text-fill: #cccccc;" unFocusColor="#cccccc">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="40.0" top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="holeSize" alignment="TOP_LEFT" focusColor="#48e5ae" labelFloat="true" promptText="Hole Size" style="-fx-prompt-text-fill: #cccccc;" unFocusColor="#cccccc">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="40.0" top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXTextField>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <ImageView fx:id="image" fitHeight="304.0" fitWidth="310.0" layoutX="-18.0" layoutY="8.0" opacity="0.82" pickOnBounds="true">
-                     <image>
-                        <Image url="@tech_brush_by_dayzee_by_dariadz_d8xnsi6-pre.jpg" />
-                     </image></ImageView>
-               </children></Pane>
+                  <JFXCheckBox fx:id="firstFiit" checkedColor="#42bb9a" onAction="#firstFitChecked" prefHeight="21.0" prefWidth="145.0" text="First Fit" textFill="WHITE" unCheckedColor="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </JFXCheckBox>
+                  <JFXCheckBox fx:id="bestFit" checkedColor="#42bb9a" onAction="#bestfitChecked" text="Best Fit" textFill="WHITE" unCheckedColor="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </JFXCheckBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER">
+               <children>
+                  <JFXButton fx:id="enterHole" buttonType="RAISED" onAction="#enterHole" prefHeight="25.0" prefWidth="115.0" style="-fx-background-color: #42BB9A;" text="Enter Hole" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </HBox.margin>
+                  </JFXButton>
+                  <JFXButton fx:id="done" buttonType="RAISED" onAction="#start" prefHeight="25.0" prefWidth="115.0" style="-fx-background-color: #42BB9A;" text="Done" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </HBox.margin>
+                  </JFXButton>
+               </children>
+            </HBox>
          </children>
-      </HBox>
+         <HBox.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </HBox.margin>
+      </VBox>
+      <Pane fx:id="imgpane" prefHeight="564.0" prefWidth="556.0" HBox.hgrow="ALWAYS" />
    </children>
-</VBox>
+</HBox>

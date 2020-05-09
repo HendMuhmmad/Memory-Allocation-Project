@@ -10,68 +10,107 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="549.0" prefWidth="836.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainScene.mainSceneController">
+<BorderPane prefHeight="637.0" prefWidth="923.0" style="-fx-background-color: #1A2439;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainScene.mainSceneController">
    <top>
-      <Label alignment="CENTER" contentDisplay="CENTER" text="Memory Allocation Project" BorderPane.alignment="CENTER">
+      <Label alignment="CENTER" contentDisplay="CENTER" text="Memory Allocation Project" textFill="WHITE" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </BorderPane.margin></Label>
+         </BorderPane.margin>
+         <font>
+            <Font name="Calibri" size="28.0" />
+         </font></Label>
    </top>
    <left>
-      <VBox alignment="CENTER" prefHeight="410.0" prefWidth="219.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="437.0" prefWidth="219.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" text="Process Entry" VBox.vgrow="ALWAYS">
+            <Label alignment="CENTER" text="Process Entry" textFill="WHITE" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
+               <font>
+                  <Font size="23.0" />
+               </font>
             </Label>
-            <JFXTextField fx:id="processName" promptText="Process Name" VBox.vgrow="ALWAYS">
-               <VBox.margin>
-                  <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
-               </VBox.margin>
-            </JFXTextField>
-            <JFXTextField fx:id="numOfSegments" onAction="#showSegmentsEntry" promptText="Number of  Segments" VBox.vgrow="ALWAYS">
-               <VBox.margin>
-                  <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
-               </VBox.margin>
-            </JFXTextField>
-            <Label fx:id="segmentLabel" text="Segement Entry" visible="false" VBox.vgrow="ALWAYS">
+            <JFXTextField fx:id="processName" focusColor="#48e5ae" labelFloat="true" promptText="Process Name" style="-fx-prompt-text-fill: #cccccc;" unFocusColor="#cccccc" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="numOfSegments" focusColor="#48e5ae" labelFloat="true" onAction="#showSegmentsEntry" promptText="Number of  Segments" style="-fx-prompt-text-fill: #cccccc;" unFocusColor="#cccccc" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXTextField>
+            <JFXButton fx:id="enter" buttonType="RAISED" onAction="#showSegmentsEntry" style="-fx-background-color: #42BB9A;" text="Enter" textFill="WHITE" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="50.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+               <effect>
+                  <Shadow />
+               </effect>
+            </JFXButton>
+            <Label fx:id="segmentLabel" disable="true" text="Segement Entry" textFill="WHITE" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <font>
+                  <Font size="23.0" />
+               </font>
             </Label>
-            <JFXTextField fx:id="segmentName" promptText="Segment Name" visible="false" VBox.vgrow="ALWAYS">
+            <JFXTextField fx:id="segmentName" disable="true" focusColor="#48e5ae" labelFloat="true" promptText="Segment Name" style="-fx-prompt-text-fill: #cccccc;" unFocusColor="#cccccc" VBox.vgrow="ALWAYS">
                <VBox.margin>
-                  <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
             </JFXTextField>
-            <JFXTextField fx:id="segmentSize" prefHeight="25.0" prefWidth="219.0" promptText="Segment Size" visible="false" VBox.vgrow="ALWAYS">
+            <JFXTextField fx:id="segmentSize" disable="true" focusColor="#48e5ae" prefHeight="25.0" prefWidth="219.0" promptText="Segment Size" style="-fx-prompt-text-fill: #cccccc;" unFocusColor="#cccccc" VBox.vgrow="ALWAYS">
                <VBox.margin>
-                  <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
             </JFXTextField>
-            <HBox prefHeight="5.0" prefWidth="192.0">
+            <HBox alignment="CENTER" prefHeight="0.0" prefWidth="199.0" VBox.vgrow="ALWAYS">
                <children>
-                  <JFXButton alignment="CENTER" buttonType="RAISED" onAction="#nextSegment" text="Next Segment" HBox.hgrow="ALWAYS">
+                  <JFXButton alignment="CENTER" buttonType="RAISED" onAction="#nextSegment" style="-fx-background-color: #42BB9A;" text="Next Segment" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <HBox.margin>
-                        <Insets left="10.0" top="20.0" />
+                        <Insets />
                      </HBox.margin>
                      <effect>
                         <Shadow />
                      </effect>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
                   </JFXButton>
-                  <JFXButton fx:id="enterProcess" alignment="CENTER" buttonType="RAISED" onAction="#enterProcess" text="Done" HBox.hgrow="ALWAYS">
+                  <JFXButton fx:id="enterProcess" alignment="CENTER" buttonType="RAISED" onAction="#enterProcess" style="-fx-background-color: #42BB9A;" text="Done" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <HBox.margin>
-                        <Insets left="10.0" top="20.0" />
+                        <Insets left="20.0" />
                      </HBox.margin>
                      <effect>
                         <Shadow />
                      </effect>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
                   </JFXButton>
                </children>
                <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="50.0" />
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </HBox>
          </children>
@@ -81,19 +120,20 @@
       </VBox>
    </left>
    <right>
-      <VBox alignment="CENTER" prefHeight="412.0" prefWidth="299.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="436.0" prefWidth="299.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Segment Table">
+            <Label text="Segment Table" textFill="WHITE" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
+               <font>
+                  <Font size="23.0" />
+               </font>
             </Label>
-            <TabPane fx:id="tabPane" prefHeight="430.0" prefWidth="299.0" tabClosingPolicy="UNAVAILABLE" />
-            <JFXButton buttonType="RAISED" onAction="#goBack" text="Back">
-               <effect>
-                  <Shadow />
-               </effect>
-            </JFXButton>
+            <TabPane fx:id="tabPane" prefHeight="396.0" prefWidth="299.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin></TabPane>
          </children>
          <BorderPane.margin>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -101,15 +141,18 @@
       </VBox>
    </right>
    <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+      <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
    </padding>
    <center>
-      <BorderPane prefHeight="410.0" prefWidth="17.0" BorderPane.alignment="CENTER">
+      <BorderPane prefHeight="470.0" prefWidth="268.0" BorderPane.alignment="CENTER">
          <top>
-            <Label text="Memory layout" BorderPane.alignment="CENTER">
+            <Label text="Memory layout" textFill="WHITE" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </BorderPane.margin>
+               <font>
+                  <Font size="23.0" />
+               </font>
             </Label>
          </top>
          <BorderPane.margin>
@@ -120,4 +163,14 @@
          </center>
       </BorderPane>
    </center>
+   <bottom>
+      <JFXButton buttonType="RAISED" onAction="#goBack" prefHeight="29.0" prefWidth="116.0" style="-fx-background-color: #42BB9A;" text="Back" textFill="WHITE" BorderPane.alignment="CENTER">
+         <effect>
+            <Shadow />
+         </effect>
+         <font>
+            <Font size="13.0" />
+         </font>
+      </JFXButton>
+   </bottom>
 </BorderPane>

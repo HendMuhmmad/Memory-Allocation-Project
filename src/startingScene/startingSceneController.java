@@ -1,9 +1,10 @@
 package startingScene;
 
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
@@ -12,17 +13,25 @@ import com.jfoenix.controls.JFXTextField;
 import application.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
-
+import javafx.fxml.Initializable;
+import javafx.scene.effect.BlendMode;
 import javafx.scene.image.ImageView;
+
 import memoryDs.holes;
 //import memoryDs.hole;
 import memoryDs.operate;
 
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 
-public class startingSceneController  {
 
-    @FXML
+
+public class startingSceneController implements Initializable {
+	
+	@FXML
+    private HBox mainHbox;
+	
     private ImageView image;
     @FXML
     private JFXCheckBox firstFiit;
@@ -44,8 +53,16 @@ public class startingSceneController  {
 
     @FXML
     private JFXButton enterHole;
+
     ArrayList<holes> holeList = new ArrayList<holes> ();
     operate oper;
+
+   
+
+    @FXML
+    private Pane imgpane;
+  
+
 
     @FXML
     void enterHole(ActionEvent event) {
@@ -91,6 +108,17 @@ public class startingSceneController  {
     	bestFit.setSelected(false);
 
     }
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		image = new ImageView("/startingScene/tech_brush_by_dayzee_by_dariadz_d8xnsi6-pre.jpg");
+		image.setBlendMode(BlendMode.SRC_OVER);
+		image.setPreserveRatio(false);
+		image.setOpacity(0.45);
+		image.setManaged(true);
+		imgpane.getChildren().add(image);
+	}
 
 
 

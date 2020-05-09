@@ -12,6 +12,7 @@ import noPlaceError.errorController;
 import javafx.scene.Scene;
 
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 
@@ -26,7 +27,7 @@ public class Main extends Application {
 	{
 		this.setPrimaryStage(primaryStage);
 		mainLayout=new BorderPane();
-	    Scene scene = new Scene(mainLayout,836,549);
+	    Scene scene = new Scene(mainLayout,923,637);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());		  
 		primaryStage.setScene(scene);
 		primaryStage.show();
@@ -38,7 +39,7 @@ public class Main extends Application {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("/startingScene/startingScene.fxml"));
-		    VBox startingScene  = loader.load();
+		    HBox startingScene  = loader.load();
 		    mainLayout.setCenter(startingScene);
 		  		 
 		} catch (IOException e) {
