@@ -23,7 +23,7 @@ public class Main extends Application {
 	{
 		this.setPrimaryStage(primaryStage);
 		mainLayout=new BorderPane();
-	    Scene scene = new Scene(mainLayout,836,564);
+	    Scene scene = new Scene(mainLayout,923,637);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());		  
 		primaryStage.setScene(scene);
 		primaryStage.show();

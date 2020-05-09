@@ -12,17 +12,17 @@
 
 <HBox fx:id="mainHbox" alignment="CENTER" prefHeight="564.0" prefWidth="836.0" style="-fx-background-color: #1A2439;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="startingScene.startingSceneController">
    <children>
-      <VBox alignment="CENTER" prefHeight="524.0" prefWidth="510.0" style="-fx-background-color: #1F6074;" HBox.hgrow="ALWAYS">
+      <VBox alignment="CENTER" prefHeight="524.0" prefWidth="489.0" style="-fx-background-color: #1F6074;" HBox.hgrow="ALWAYS">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="38.0" prefWidth="291.0" text="Memory Size and Holes Entry" textFill="WHITE">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="38.0" prefWidth="394.0" text="Memory Size and Holes Entry" textFill="WHITE">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </VBox.margin>
                <font>
-                  <Font size="19.0" />
+                  <Font size="23.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="memorySize" alignment="TOP_LEFT" focusColor="#48e5ae" labelFloat="true" promptText="Memory Size" style="-fx-prompt-text-fill: White;" unFocusColor="WHITE">
+            <JFXTextField fx:id="memorySize" alignment="TOP_LEFT" focusColor="#48e5ae" labelFloat="true" promptText="Memory Size" style="-fx-prompt-text-fill: #cccccc;" unFocusColor="#cccccc">
                <VBox.margin>
                   <Insets bottom="30.0" left="20.0" right="40.0" top="30.0" />
                </VBox.margin>
@@ -30,7 +30,7 @@
                   <Font size="15.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="holeStartAdress" alignment="TOP_LEFT" focusColor="#48e5ae" labelFloat="true" promptText="Hole Starting Adress" style="-fx-prompt-text-fill: White;" unFocusColor="WHITE">
+            <JFXTextField fx:id="holeStartAdress" alignment="TOP_LEFT" focusColor="#48e5ae" labelFloat="true" promptText="Hole Starting Adress" style="-fx-prompt-text-fill: #cccccc;" unFocusColor="#cccccc">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="40.0" top="20.0" />
                </VBox.margin>
@@ -38,7 +38,7 @@
                   <Font size="15.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="holeSize" alignment="TOP_LEFT" focusColor="#48e5ae" labelFloat="true" promptText="Hole Size" style="-fx-prompt-text-fill: white;" unFocusColor="WHITE">
+            <JFXTextField fx:id="holeSize" alignment="TOP_LEFT" focusColor="#48e5ae" labelFloat="true" promptText="Hole Size" style="-fx-prompt-text-fill: #cccccc;" unFocusColor="#cccccc">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="40.0" top="20.0" />
                </VBox.margin>
