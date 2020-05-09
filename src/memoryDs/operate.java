@@ -13,6 +13,9 @@ public class operate {
     private ArrayList<holes> holesList = new ArrayList<holes>();
     private ObservableList<segment> segments =FXCollections.observableArrayList();
     
+    public ArrayList<holes> getHolesList() {
+		return holesList;
+	}
     public ObservableList<segment> getObservableList()
     {
     	return segments;
@@ -54,7 +57,7 @@ public class operate {
             int new_limit_hole = 0;
             if(holesList.size()-i!=1){
                 if((holesList.get(i).getBase() + holesList.get(i).getLimit()) == holesList.get(i+1).getBase())
-                    { 
+                    {
                         //System.out.println("d5lt gwa el if");
                         new_limit_hole = new_limit_hole + holesList.get(i).getLimit() ;
                         //System.out.println("limit hole " + new_limit_hole);
@@ -271,7 +274,6 @@ public class operate {
                                     }
 //                                     System.out.println("savedrem"+ savedholesrem.get(0));
 //                                     System.out.println("rem "+ remaining);
-                                     exit = true ;
                                      counter++;
                                                             
                                     //counter=0;

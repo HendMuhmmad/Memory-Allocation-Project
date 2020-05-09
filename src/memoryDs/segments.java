@@ -1,13 +1,21 @@
 
 package memoryDs;
 
+import javafx.scene.layout.Pane;
 
 public class segments {
     private String SegmentName;
     private int SegmentBase;
     private int SegmentLimit;
 
-    
+    private Pane box;
+	//CONSTRUCTOR
+	public Pane getBox() {
+		return box;
+	}
+	public void setBox(Pane box) {
+		this.box = box;
+	}    
     
     public segments(String Name , int limit ){
         this.SegmentName = Name;

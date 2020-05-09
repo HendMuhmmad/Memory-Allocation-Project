@@ -10,6 +10,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 
 import application.Main;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -27,6 +28,7 @@ import javafx.stage.Stage;
 import memoryDs.operate;
 import memoryDs.segment;
 import memoryDs.segments;
+import memoryLayout.memdrawing;
 import segmentTab.segmentTableController;
 
 
@@ -59,9 +61,25 @@ public class mainSceneController {
    
     private ArrayList<segments> segmentList = new  ArrayList<segments>();
     
+    private memdrawing draw_memory ;
+   
+    public memdrawing getDraw_memory() {
+		return draw_memory;
+	}
+    
+    public void setDraw_memory(memdrawing draw_memory) {
+		this.draw_memory = draw_memory;
+	}
+    
     public void setOper(operate p)
     {
     	this.oper = p; 
+    draw_memory= new memdrawing(memoryAnchorPane, oper.getMemorySize());
+   
+    draw_memory.draw_holes(oper.getHolesList());
+  
+
+   
     }
 
     public operate getOper() {
@@ -95,6 +113,7 @@ public class mainSceneController {
     	if(oper.isType())
     	{
     		oper.FirstFit(processName.getText(), segmentList);
+    	
     		
     	}
     	else
