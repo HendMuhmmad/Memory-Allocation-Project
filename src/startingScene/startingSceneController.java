@@ -54,9 +54,10 @@ public class startingSceneController  {
  
     @FXML
     void start(ActionEvent event) {
-    	holeList.add(new holes(Integer.parseInt(holeStartAdress.getText()) , Integer.parseInt(holeSize.getText())));
+    	holeList.add(new holes(Integer.parseInt(holeStartAdress.getText()) , Integer.parseInt(holeSize.getText())));       
     	oper = new operate(Integer.parseInt(memorySize.getText()));
-    	if(oper.SizeOfHoles(holeList) <=oper.getMemorySize())
+    	oper.setholes(holeList);
+    	if(oper.SizeOfHoles() <=oper.getMemorySize())
     	{
     		if(firstFiit.isSelected())
     		{
@@ -68,15 +69,15 @@ public class startingSceneController  {
     		}
     			
     		Main.showMainScene(oper);
+    		
     	}
     	else
     	{
-    		holeList.clear();
+    		
     		Main.showAlertStage("Exceeded Memory Limit");
     	}
     	
-    	
-        
+    	holeList.clear();       
     }
 
     @FXML

@@ -4,10 +4,22 @@ package memoryDs;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class operate {
     private int memorySize;
     private boolean type; //true first fit   false  best fit
+    private ArrayList<holes> holesList = new ArrayList<holes>();
+    private ObservableList<segment> segments =FXCollections.observableArrayList();
     
+    public ObservableList<segment> getObservableList()
+    {
+    	return segments;
+    }
+	public void setholes(ArrayList<holes> holes) {
+		this.holesList.addAll(holes);
+	}
     
     public operate(int size){
         this.memorySize =size;
@@ -25,15 +37,16 @@ public class operate {
         this.memorySize=0;
     }
     
-    public int SizeOfHoles(ArrayList<holes> holesList){
+    public int SizeOfHoles(){
         int size = 0;
         for(holes a : holesList){
             size = size + a.getLimit();
         }
+        
         return size;
     }
     
-    public void ArrangeHoles(ArrayList<holes> holesList){
+    public void ArrangeHoles(){
         Collections.sort(holesList, new sortByBase());    
        for(int i= 0 ;i<holesList.size() ; i++)
         { 
@@ -56,7 +69,7 @@ public class operate {
         }
     }
     
-    public int SearchInHolesList(int segmentBase , int segmentEnd , ArrayList<holes> holesList){
+    public int SearchInHolesList(int segmentBase , int segmentEnd){
         boolean up = false;
         boolean down = false;
         int result;
@@ -89,7 +102,7 @@ public class operate {
         return 4;
     } 
     
-    public void DeallocateProcess(String ProcessName ,ArrayList<holes> holesList , ArrayList<segments> segmentList){
+    public void DeallocateProcess(String ProcessName, ArrayList<segments> segmentList){
         Collections.sort(holesList, new sortByBase());
         int result;
         int BaseHole = 0;
@@ -99,7 +112,7 @@ public class operate {
             
             result= SearchInHolesList(segmentList.get(i).getSegmentBase()
                     ,(segmentList.get(i).getSegmentBase()+segmentList.get(i).getSegmentLimit())
-                    , holesList);
+                    );
             
             //System.out.println("result " + result);
             if(result==0){
@@ -161,7 +174,7 @@ public class operate {
         }
     }
     
-    public void AllocateFirstFit(String ProcessName ,ArrayList<holes> holesList , ArrayList<segments> segmentList){
+    public void AllocateFirstFit(String ProcessName, ArrayList<segments> segmentList){
         
         for(int i=0 ; i<segmentList.size() ; i++){
             
@@ -169,6 +182,7 @@ public class operate {
             while(index< holesList.size()){
                 if(segmentList.get(i).getSegmentLimit() <= holesList.get(index).getLimit()){
                     segmentList.get(i).setSegmentBase(holesList.get(index).getBase());
+                    segments.add(new segment(segmentList.get(i).getSegmentName(),segmentList.get(i).getSegmentLimit(),segmentList.get(i).getSegmentBase()));
                     if(segmentList.get(i).getSegmentLimit() == holesList.get(index).getLimit()){
                         holesList.remove(index);
                     }
@@ -183,7 +197,7 @@ public class operate {
         }
     }
     
-    public void AllocateBestFit(String ProcessName ,ArrayList<holes> holesList , ArrayList<segments> segmentList){
+    public void AllocateBestFit(String ProcessName, ArrayList<segments> segmentList){
         Collections.sort(holesList, new sortByLimit());
         for(int i=0 ; i<segmentList.size() ; i++){
             Collections.sort(holesList, new sortByLimit());
@@ -191,6 +205,7 @@ public class operate {
             while(index< holesList.size()){
                 if(segmentList.get(i).getSegmentLimit() <= holesList.get(index).getLimit()){
                     segmentList.get(i).setSegmentBase(holesList.get(index).getBase());
+                    segments.add(new segment(segmentList.get(i).getSegmentName(),segmentList.get(i).getSegmentLimit(),segmentList.get(i).getSegmentBase()));
                     if(segmentList.get(i).getSegmentLimit() == holesList.get(index).getLimit()){
                         holesList.remove(index);
                     }
@@ -205,7 +220,7 @@ public class operate {
         }
     }
     
-    public void FirstFit(String ProcessName ,ArrayList<holes> holesList , ArrayList<segments> segmentList ,int NumOfProcess){
+    public void FirstFit(String ProcessName  , ArrayList<segments> segmentList){
         Collections.sort(holesList, new sortByBase());
         int sizeofsegment=0;
         int sizeofholes=0;
@@ -225,6 +240,9 @@ public class operate {
         ArrayList<Integer> savedholesrem = new ArrayList<Integer> (); 
         
         if(sizeofsegment > sizeofholes){
+        	System.out.println(sizeofsegment);
+        	System.out.println(sizeofholes);
+        	System.out.println(holesList);
             System.out.println("there's no enough space");
         }
         else{
@@ -247,7 +265,7 @@ public class operate {
                                     
                                     
                                      remaining = savedholesrem.get(k) - segmentList.get(i).getSegmentLimit();
-                                     savedholesrem.set(0,remaining );
+                                     savedholesrem.set(k,remaining );
                                      if(remaining == 0 ){
                                      //   System.out.println("abo shklk");
                                     }
@@ -302,7 +320,7 @@ public class operate {
             else{
                 //the allocation function 
                 
-                AllocateFirstFit(ProcessName ,holesList ,segmentList);
+                AllocateFirstFit(ProcessName,segmentList);
                 
                 System.out.println("segId   " + "segLimit   " + "segBase");
                 for(segments op :segmentList){
@@ -318,7 +336,7 @@ public class operate {
 
                 }
                 
-                DeallocateProcess(ProcessName ,holesList ,segmentList);  //Gui httshaaaal
+                DeallocateProcess(ProcessName ,segmentList);  //Gui httshaaaal
                 System.out.println("holes after allocation");
                 
                 System.out.println("holeBase   " + "holeLimit   " + "holeEnd");
@@ -332,7 +350,7 @@ public class operate {
         }
     }
     
-    public void BestFit(String ProcessName ,ArrayList<holes> holesList , ArrayList<segments> segmentList ,int NumOfProcess){
+    public void BestFit(String ProcessName , ArrayList<segments> segmentList ){
         Collections.sort(holesList, new sortByLimit());
         int sizeofsegment=0;
         int sizeofholes=0;
@@ -352,6 +370,10 @@ public class operate {
         ArrayList<Integer> savedholesrem = new ArrayList<Integer> (); 
         
         if(sizeofsegment > sizeofholes){
+        	System.out.println(sizeofsegment);
+        	System.out.println(sizeofholes);
+        	System.out.println(sizeofsegment);
+        	System.out.println(holesList);
             System.out.println("there's no enough space");
         }
         else{
@@ -374,7 +396,7 @@ public class operate {
                                     
                                     
                                      remaining = savedholesrem.get(k) - segmentList.get(i).getSegmentLimit();
-                                     savedholesrem.set(0,remaining );
+                                     savedholesrem.set(k,remaining );
                                      if(remaining == 0 ){
                                      //   System.out.println("abo shklk");
                                     }
@@ -429,7 +451,7 @@ public class operate {
             else{
                 //the allocation function 
                 
-                AllocateBestFit(ProcessName ,holesList ,segmentList);
+                AllocateBestFit(ProcessName,segmentList);
                 System.out.println("segId   " + "segLimit   " + "segBase");
                 for(segments op :segmentList){
                     System.out.println(op.getSegmentName()+"        "+op.getSegmentLimit()+"            "+ op.getSegmentBase());
@@ -445,7 +467,7 @@ public class operate {
 
                 }
                 
-                DeallocateProcess(ProcessName ,holesList ,segmentList);  //Gui httshaaaal
+                DeallocateProcess(ProcessName,segmentList);  //Gui httshaaaal
                 System.out.println("holes after deallocation");
                 
                 System.out.println("holeBase   " + "holeLimit   " + "holeEnd");
@@ -466,6 +488,11 @@ public class operate {
 	public void setType(boolean type) {
 		this.type = type;
 	}    
+	
+	public void clearSegments()
+	{
+		segments.clear();
+	}
 
     
 }

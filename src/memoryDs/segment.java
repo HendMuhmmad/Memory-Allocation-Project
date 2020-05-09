@@ -16,11 +16,20 @@ public class segment {
 	public void setBox(Pane box) {
 		this.box = box;
 	}
-	public segment(String segmentName, int segmentLimit)
-	{
+
+	public segment(String segmentName, int segmentLimit,int segmentBase) {
+
 		this.segmentName = new SimpleStringProperty(segmentName);
 		this.SegmentLimit = new SimpleIntegerProperty(segmentLimit);
+
 		this.segmentBase = new SimpleIntegerProperty(0);	
+
+		this.segmentBase = new SimpleIntegerProperty(0);
+		
+
+		this.segmentBase = new SimpleIntegerProperty(segmentBase);
+		
+
 	}
 
 	public String getSegmentName() {

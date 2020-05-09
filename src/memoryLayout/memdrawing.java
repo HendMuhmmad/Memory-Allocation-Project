@@ -93,7 +93,9 @@ public class memdrawing {
 	{
 		index=0;
 		ArrayList<segment> list =new ArrayList<segment>();
-		segment used =new segment("used", 0);
+		/////////////
+		segment used =new segment("used", 0,0);
+		//////////
 		
 		holes.forEach((hole)->
 		{
