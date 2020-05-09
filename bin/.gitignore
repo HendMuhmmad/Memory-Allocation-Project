@@ -1,15 +1,4 @@
-<<<<<<< HEAD
-/application/
 /mainScene/
+/memorylayout/
 /memoryDs/
 /segmentTab/
-/startingScene/
-||||||| 7ec45f2
-=======
-/application/
-/mainScene/
-/memoryDs/
-/noPlaceError/
-/segmentTab/
-/startingScene/
->>>>>>> updateTable

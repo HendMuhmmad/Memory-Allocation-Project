@@ -56,8 +56,6 @@ public class mainSceneController {
     	segments.add(s);
     	segmentName.clear();
     	segmentSize.clear();
-
-
     }
 
     @FXML
