@@ -2,18 +2,25 @@ package memoryDs;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.layout.Pane;
 
 public class segment {
 	private SimpleStringProperty  segmentName;
 	private SimpleIntegerProperty segmentBase;
 	private SimpleIntegerProperty SegmentLimit;
-
+	private Pane box;
 	//CONSTRUCTOR
-	public segment(String segmentName, int segmentLimit) {
+	public Pane getBox() {
+		return box;
+	}
+	public void setBox(Pane box) {
+		this.box = box;
+	}
+	public segment(String segmentName, int segmentLimit)
+	{
 		this.segmentName = new SimpleStringProperty(segmentName);
 		this.SegmentLimit = new SimpleIntegerProperty(segmentLimit);
-		this.segmentBase = new SimpleIntegerProperty(0);
-		
+		this.segmentBase = new SimpleIntegerProperty(0);	
 	}
 
 	public String getSegmentName() {
@@ -39,6 +46,4 @@ public class segment {
 	public void setSegmentLimit(int segmentLimit) {
 		SegmentLimit = new SimpleIntegerProperty(segmentLimit);
 	}
-
-	
 }

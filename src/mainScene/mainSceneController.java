@@ -19,7 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
@@ -30,6 +30,9 @@ import segmentTab.segmentTableController;
 
 
 public class mainSceneController {
+	
+	@FXML
+	private AnchorPane memoryAnchorPane;
 
     @FXML
     private JFXTextField processName;
