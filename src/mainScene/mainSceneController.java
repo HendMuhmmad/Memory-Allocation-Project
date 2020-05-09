@@ -26,6 +26,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import memoryDs.operate;
 import memoryDs.segment;
+import memoryDs.segments;
 import segmentTab.segmentTableController;
 
 
@@ -52,7 +53,8 @@ public class mainSceneController {
     private Label segmentLabel;
    // private boolean full = false;
     private operate oper;
-    private ObservableList<segment> segments =FXCollections.observableArrayList();
+   
+    private ArrayList<segments> segmentList = new  ArrayList<segments>();
     
     public void setOper(operate p)
     {
@@ -65,8 +67,9 @@ public class mainSceneController {
 
 	@FXML
     void nextSegment(ActionEvent event) {
-    	segment s = new segment(segmentName.getText(),Integer.parseInt(segmentSize.getText()));
-    	segments.add(s);
+    	
+    	segments seg = new segments(segmentName.getText(),Integer.parseInt(segmentSize.getText()));
+    	segmentList.add(seg);
     	segmentName.clear();
     	segmentSize.clear();
 
@@ -82,14 +85,25 @@ public class mainSceneController {
     }
     @FXML
     void enterProcess(ActionEvent event) {
-		segment s = new segment(segmentName.getText(),Integer.parseInt(segmentSize.getText()));
-    	segments.add(s);
     	try {
+		
+    	segments seg = new segments(segmentName.getText(),Integer.parseInt(segmentSize.getText()));
+    	segmentList.add(seg);
+    	if(oper.isType())
+    	{
+    		oper.FirstFit(processName.getText(), segmentList);
+    		
+    	}
+    	else
+    	{
+    		oper.BestFit(processName.getText(), segmentList);
+    	}
+  	
     		FXMLLoader tab_loader = new FXMLLoader(getClass().getResource("/segmentTab/segementTab.fxml"));
     		Tab new_tab;
     		new_tab = tab_loader.load();
     		segmentTableController controller = tab_loader.getController(); 		     
-    	    controller.setSegments(segments);
+    	    controller.setSegments(oper.getObservableList());
     		controller.updateTable();
     		new_tab.setText(processName.getText());
     		tabPane.getTabs().add(new_tab);
@@ -98,7 +112,8 @@ public class mainSceneController {
         	segmentSize.clear();
         	processName.clear();
         	numOfSegments.clear();
-        	segments.clear();
+        	segmentList.clear();
+        	oper.clearSegments();
     	} catch (IOException e) {
     		// TODO Auto-generated catch block
     		e.printStackTrace();
