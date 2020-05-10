@@ -113,8 +113,8 @@ public class startingSceneController implements Initializable {
     void enterHole(ActionEvent event) {
         if(valid)
         {
-          	int holeStart= Integer.parseInt(holeStartAdress.getText());
-        	int holeLimit= Integer.parseInt(holeSize.getText());
+          	Float holeStart= Float.parseFloat(holeStartAdress.getText());
+        	Float holeLimit= Float.parseFloat(holeSize.getText());
         	holeList.add(new holes(holeStart,holeLimit));
         	holeStartAdress.clear();
         	holeSize.clear();
@@ -146,8 +146,8 @@ public class startingSceneController implements Initializable {
     	if(valid)
     	{
     		
-        	holeList.add(new holes(Integer.parseInt(holeStartAdress.getText()) , Integer.parseInt(holeSize.getText())));       
-        	oper.setMemorySize(Integer.parseInt(memorySize.getText()));
+        	holeList.add(new holes(Float.parseFloat(holeStartAdress.getText()) , Float.parseFloat(holeSize.getText())));       
+        	oper.setMemorySize(Float.parseFloat(memorySize.getText()));
         	oper.setholes(holeList);
         	if(oper.SizeOfHoles() <=oper.getMemorySize())
         	{        	        		

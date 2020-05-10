@@ -18,7 +18,7 @@ public class segment {
 		this.box = box;
 	}
 
-	public segment(String segmentName, int segmentLimit) {
+	public segment(String segmentName, float segmentLimit) {
 
 		this.segmentName = new SimpleStringProperty(segmentName);
 		this.SegmentLimit = new SimpleFloatProperty(segmentLimit);
