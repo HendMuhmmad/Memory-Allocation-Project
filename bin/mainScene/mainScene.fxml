@@ -49,7 +49,7 @@
                   <Font size="15.0" />
                </font>
             </JFXTextField>
-            <JFXButton fx:id="enter" buttonType="RAISED" onAction="#showSegmentsEntry" style="-fx-background-color: #42BB9A;" text="Enter" textFill="WHITE" VBox.vgrow="ALWAYS">
+            <JFXButton fx:id="enter" buttonType="RAISED" onAction="#showSegmentsEntry" text="Enter" textFill="WHITE" VBox.vgrow="ALWAYS">
                <font>
                   <Font size="13.0" />
                </font>
@@ -86,7 +86,7 @@
             </JFXTextField>
             <HBox alignment="CENTER" prefHeight="0.0" prefWidth="199.0" VBox.vgrow="ALWAYS">
                <children>
-                  <JFXButton alignment="CENTER" buttonType="RAISED" onAction="#nextSegment" style="-fx-background-color: #42BB9A;" text="Next Segment" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <JFXButton alignment="CENTER" buttonType="RAISED" onAction="#nextSegment" text="Next Segment" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -97,7 +97,7 @@
                         <Font size="13.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="enterProcess" alignment="CENTER" buttonType="RAISED" onAction="#enterProcess" style="-fx-background-color: #42BB9A;" text="Done" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <JFXButton fx:id="enterProcess" alignment="CENTER" buttonType="RAISED" onAction="#enterProcess" text="Done" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
@@ -164,7 +164,7 @@
       </BorderPane>
    </center>
    <bottom>
-      <JFXButton buttonType="RAISED" onAction="#goBack" prefHeight="29.0" prefWidth="116.0" style="-fx-background-color: #42BB9A;" text="Back" textFill="WHITE" BorderPane.alignment="CENTER">
+      <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" onAction="#goBack" prefHeight="29.0" prefWidth="116.0" text="Back" textFill="WHITE" BorderPane.alignment="CENTER">
          <effect>
             <Shadow />
          </effect>

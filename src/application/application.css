@@ -18,7 +18,7 @@
 
 .tab:hover
 {
-	-fx-background-color:#6995A2;
+	-fx-background-color:#81D1BB;
 }
 
 
@@ -81,7 +81,11 @@
     
 }
 
-
+ .table-row-cell:odd:filled  {
+    -fx-background-color:  #46636C ;
+    -fx-text-fill:white;
+ 
+}
 
 .table-view 
 {
@@ -122,4 +126,14 @@
 	-fx-size: 30;
 	-fx-border-width: 10 10 10 10;
 	-fx-background-color: transparent ;
+}
+.button
+{
+	-fx-background-color: #42BB9A
+}
+.button:hover
+{
+	
+
+	-fx-background-color: #81D1BB
 }
