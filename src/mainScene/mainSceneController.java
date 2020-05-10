@@ -94,12 +94,10 @@ public class mainSceneController {
 	@FXML
     void nextSegment(ActionEvent event) {
     	
-    	segment seg = new segment(segmentName.getText(),Integer.parseInt(segmentSize.getText()));
+    	segment seg = new segment(segmentName.getText(),Float.parseFloat(segmentSize.getText()));
     	segmentList.add(seg);
     	segmentName.clear();
     	segmentSize.clear();
-
-
     }
 
     @FXML
@@ -111,140 +109,87 @@ public class mainSceneController {
     }
     @FXML
     void enterProcess(ActionEvent event) {
+    	boolean checksegments;
     	try {
 		
-    	segment seg = new segment(segmentName.getText(),Integer.parseInt(segmentSize.getText()));
+    	segment seg = new segment(segmentName.getText(),Float.parseFloat(segmentSize.getText()));
     	segmentList.add(seg);
     	if(oper.isType())
     	{
-    		System.out.println("segment_list from algorithm before first fit");
-    		System.out.println(segmentList);
-    		 boolean checksegments=oper.FirstFit (processName.getText(), segmentList);
-    		 System.out.println("segment_list from algorithm after first fit");
-     		System.out.println(segmentList);
     		
-            if(checksegments==false){
-                System.out.println("there's no enough space2");
+    		checksegments=oper.FirstFit (processName.getText(), segmentList);
+    		 
+    		
+            if(checksegments==false)
+              {
+               Main.showAlertStage(" For "+processName.getText());
                 segmentList.clear();  
               }
-              else {
-            	  System.out.println("segment_list from algorithm before allocate");
-          		System.out.println(segmentList); 
+              else 
+              {
                   oper.AllocateFirstFit(processName.getText() ,segmentList);
-                  System.out.println("segment_list from algorithm after allocate");
-          		System.out.println(segmentList);
                   draw_memory.draw_process(processName.getText(), segmentList);
-                  //oper.AllocateBestFit(processname ,holeList ,segmentList);
-                  System.out.println("segId   " + "segBase   " + "    segLimit");
-                  for(segment op :segmentList){
-                      System.out.println(op.getSegmentName()+"         "+ op.getSegmentBase()+"        "+op.getSegmentLimit());
-
-                  }
-
-
-                  System.out.println("holes after alloc and before deallocation");
-                 // Collections.sort(holeList, new sortByBase());
-                  System.out.println("holeBase   " + "holeLimit   " + "holeEnd");
-                  for(holes op :oper.getHolesList()){
-                  System.out.println(op.getBase()+"           "+op.getLimit()+"            "+op.getEnd());
-
-                  }
-                
-                  
               }
 
     	}
-
     	else
     	{
-    		boolean checksegments =oper.BestFit(processName.getText(), segmentList);
-    		 if(checksegments==false){
-                 System.out.println("there's no enough space2");
+    		 checksegments =oper.BestFit(processName.getText(), segmentList);
+    		 if(checksegments==false)
+    		   {
+    			 Main.showAlertStage("For"+processName.getText());
                  segmentList.clear();  
                }
                else {             	 
                    oper.AllocateBestFit(processName.getText() ,segmentList);
                    draw_memory.draw_process(processName.getText(), segmentList);
-                   //oper.AllocateBestFit(processname ,holeList ,segmentList);
-                   System.out.println("segId   " + "segBase   " + "    segLimit");
-                   for(segment op :segmentList){
-                       System.out.println(op.getSegmentName()+"         "+ op.getSegmentBase()+"        "+op.getSegmentLimit());
-                   }
-                   System.out.println("holes after alloc and before deallocation");
-                   System.out.println("holeBase   " + "holeLimit   " + "holeEnd");
-                   for(holes op :oper.getHolesList()){
-                   System.out.println(op.getBase()+"           "+op.getLimit()+"            "+op.getEnd());
-                   }
-                   
-                   
-               }
-    	
-    	
-    	
+                    }
     	
     	}
   	
-    		FXMLLoader tab_loader = new FXMLLoader(getClass().getResource("/segmentTab/segementTab.fxml"));
+    		if(checksegments) 
+    		{FXMLLoader tab_loader = new FXMLLoader(getClass().getResource("/segmentTab/segementTab.fxml"));
     		Tab new_tab;
     		new_tab = tab_loader.load();
     		segmentTableController controller = tab_loader.getController(); 		     
-    	    
-
     		controller.setSegments(FXCollections.observableArrayList(segmentList));
     		controller.updateTable();
     		new_tab.setText(processName.getText());
     		tabPane.getTabs().add(new_tab);
     		tabPane.getSelectionModel().select(new_tab);
-    	  	segmentName.clear();
+    		}
+    		segmentName.clear();
         	segmentSize.clear();
         	processName.clear();
         	numOfSegments.clear();
         	segmentList.clear();
-        //	oper.clearSegments();
+     
     	} catch (IOException e) {
     		// TODO Auto-generated catch block
     		e.printStackTrace();
     	}
-		
-
-    	//alocate
-		    	
-	    /*	if(full)
-	    	{
-
-	    	}
-	    	else {
-
-<<<<<<< HEAD
-
-	    	}*/
-
-	    	
-
 	    	
 	    	segmentName.setDisable(true);
 			segmentSize.setDisable(true);
 			segmentLabel.setDisable(true);
-
-
 		    
 		} 
     public void deleteTab(String tabName)
     {
-    	tabPane.getTabs().removeIf(n -> n.getText()==tabName);
+    	List<Tab> temp=tabPane.getTabs();
+    	for(Tab t : temp) 
+    		{
+    			if(t.getText().equals(tabName)) 
+    			{
+    				tabPane.getTabs().remove(t);
+    				break;
+    			}
+    		}
     }
 
-    	
-    
-    
-    
     @FXML
     void goBack(ActionEvent event) {
     	Main.showStartingScene();
 
     }
-    
-  
-
-
 }

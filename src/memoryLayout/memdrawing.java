@@ -187,7 +187,7 @@ public memdrawing(AnchorPane _achorpane , float _memory_size,operate _oper,mainS
 		{
 			if(index < h.getBase()) 
 			{
-				segment used =new segment("used", 0);
+				segment used =new segment("", 0);
 				used.setSegmentLimit(h.getBase()-index);
 				used.setSegmentBase(index);
 				list.add(used);
@@ -203,7 +203,7 @@ public memdrawing(AnchorPane _achorpane , float _memory_size,operate _oper,mainS
 		
 		if(index != memory_size)
 		{
-			segment used =new segment("used", 0);
+			segment used =new segment("", 0);
 			used.setSegmentLimit(memory_size-index);
 			used.setSegmentBase(index);	
 			list.add(used);
@@ -221,7 +221,7 @@ public memdrawing(AnchorPane _achorpane , float _memory_size,operate _oper,mainS
 			System.out.println("list items before calling draw process");
 			System.out.println(a.getSegmentBase());
 		}
-		draw_process("used", list);
+		draw_process("USED", list);
 		
 		
 	}
@@ -259,9 +259,10 @@ public memdrawing(AnchorPane _achorpane , float _memory_size,operate _oper,mainS
 				if(entry.getKey()=="used") {
 					anchorpane.getChildren().remove(clicked_box);
 					f_list.remove(seg);
-					f_list.clear();
-					f_list.add(seg);
-				oper.DeallocateProcess(f_list );
+					
+				ArrayList<segment> temp = new ArrayList<segment>();
+				temp.add(seg);
+				oper.DeallocateProcess(temp);
 					
 				}
 				else {
