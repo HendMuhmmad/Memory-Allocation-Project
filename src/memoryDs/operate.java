@@ -250,7 +250,6 @@ public class operate {
         ArrayList<Float> savedholesrem = new ArrayList<Float> (); 
         
         if(sizeofsegment > sizeofholes){
-        	System.out.println("falsseee");
         	return false;
            // System.out.println("there's no enough space");
         }
@@ -322,42 +321,10 @@ public class operate {
             
             if(numofelements!=segmentList.size()){
                 return false;
-//                System.out.println("there's no enough space2");
-//                segmentList.clear();
-               // deallocate segments of refused process;
-                
             }
             else{
                 //the allocation function 
                return true; 
-                
-                
-//               AllocateFirstFit(ProcessName ,holesList ,segmentList);
-                
-               /* System.out.println("segId   " + "segLimit   " + "segBase");
-                for(segment op :segmentList){
-                    System.out.println(op.getSegmentName()+"        "+op.getSegmentLimit()+"            "+ op.getSegmentBase());
-            
-                }
-                
-                
-                    System.out.println("holes before allocation");
-                System.out.println("holeBase   " + "holeLimit   " + "holeEnd");
-                for(holes op :holesList){
-                System.out.println(op.getBase()+"           "+op.getLimit()+"            "+op.getEnd());
-
-                }*/
-                /*
-                DeallocateProcess(ProcessName ,holesList ,segmentList);  //Gui httshaaaal
-                System.out.println("holes after allocation");
-                
-                System.out.println("holeBase   " + "holeLimit   " + "holeEnd");
-                for(holes op :holesList){
-                System.out.println(op.getBase()+"           "+op.getLimit()+"            "+op.getEnd());
-                }*/
-//            
-//                segmentList.clear(); //bt7sl m3 nhayetm kol process ma3da a5r process
-               
             }
         }
     }
