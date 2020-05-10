@@ -1,13 +1,14 @@
 package memoryDs;
 
+import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.layout.Pane;
 
 public class segment {
 	private SimpleStringProperty  segmentName;
-	private SimpleIntegerProperty segmentBase;
-	private SimpleIntegerProperty SegmentLimit;
+	private SimpleFloatProperty segmentBase;
+	private SimpleFloatProperty SegmentLimit;
 	private Pane box;
 	//CONSTRUCTOR
 	public Pane getBox() {
@@ -17,17 +18,31 @@ public class segment {
 		this.box = box;
 	}
 
+	public segment(String segmentName, int segmentLimit) {
+
+		this.segmentName = new SimpleStringProperty(segmentName);
+		this.SegmentLimit = new SimpleFloatProperty(segmentLimit);
+
+		this.segmentBase = new SimpleFloatProperty(0);	
+
+		this.segmentBase = new SimpleFloatProperty(0);
+		
+
+	
+		
+
+	}
 	public segment(String segmentName, int segmentLimit,int segmentBase) {
 
 		this.segmentName = new SimpleStringProperty(segmentName);
-		this.SegmentLimit = new SimpleIntegerProperty(segmentLimit);
+		this.SegmentLimit = new SimpleFloatProperty(segmentLimit);
 
-		this.segmentBase = new SimpleIntegerProperty(0);	
+		this.segmentBase = new SimpleFloatProperty(0);	
 
-		this.segmentBase = new SimpleIntegerProperty(0);
+		this.segmentBase = new SimpleFloatProperty(0);
 		
 
-		this.segmentBase = new SimpleIntegerProperty(segmentBase);
+		this.segmentBase = new SimpleFloatProperty(segmentBase);
 		
 
 	}
@@ -40,19 +55,19 @@ public class segment {
 		this.segmentName = new SimpleStringProperty(segmentName);
 	}
 
-	public int getSegmentBase() {
+	public float getSegmentBase() {
 		return segmentBase.get();
 	}
 
-	public void setSegmentBase(int segmentBase) {
-		this.segmentBase = new SimpleIntegerProperty(segmentBase);
+	public void setSegmentBase(float segmentBase) {
+		this.segmentBase = new SimpleFloatProperty(segmentBase);
 	}
 
-	public int getSegmentLimit() {
+	public float getSegmentLimit() {
 		return SegmentLimit.get();
 	}
 
-	public void setSegmentLimit(int segmentLimit) {
-		SegmentLimit = new SimpleIntegerProperty(segmentLimit);
+	public void setSegmentLimit(float segmentLimit) {
+		SegmentLimit = new SimpleFloatProperty(segmentLimit);
 	}
 }
