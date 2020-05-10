@@ -46,7 +46,7 @@
                   <Font size="15.0" />
                </font>
             </JFXTextField>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER" prefHeight="79.0" prefWidth="365.0">
                <children>
                   <JFXCheckBox fx:id="firstFiit" checkedColor="#42bb9a" onAction="#firstFitChecked" prefHeight="21.0" prefWidth="145.0" text="First Fit" textFill="WHITE" unCheckedColor="WHITE">
                      <font>
@@ -66,14 +66,19 @@
                   </JFXCheckBox>
                </children>
             </HBox>
+            <Label fx:id="choiceLabel" prefHeight="3.0" prefWidth="132.0" text="Choice is Required !" textFill="#941821" visible="false">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
             <HBox alignment="CENTER">
                <children>
-                  <JFXButton fx:id="enterHole" buttonType="RAISED" onAction="#enterHole" prefHeight="25.0" prefWidth="115.0" style="-fx-background-color: #42BB9A;" text="Enter Hole" textFill="WHITE">
+                  <JFXButton fx:id="enterHole" buttonType="RAISED" onAction="#enterHole" prefHeight="25.0" prefWidth="115.0" text="Enter Hole" textFill="WHITE">
                      <HBox.margin>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </HBox.margin>
                   </JFXButton>
-                  <JFXButton fx:id="done" buttonType="RAISED" onAction="#start" prefHeight="25.0" prefWidth="115.0" style="-fx-background-color: #42BB9A;" text="Done" textFill="WHITE">
+                  <JFXButton id="b" fx:id="done" buttonType="RAISED" onAction="#start" prefHeight="25.0" prefWidth="115.0" text="Done" textFill="WHITE">
                      <HBox.margin>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </HBox.margin>
