@@ -67,6 +67,9 @@ public class startingSceneController implements Initializable {
     @FXML
     void enterHole(ActionEvent event) {
     	holeList.add(new holes(Integer.parseInt(holeStartAdress.getText()) , Integer.parseInt(holeSize.getText())));
+    	holeStartAdress.clear();
+    	holeSize.clear();
+    
     }
  
     @FXML

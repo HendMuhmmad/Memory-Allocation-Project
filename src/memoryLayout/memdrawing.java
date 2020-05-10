@@ -1,34 +1,51 @@
 package memoryLayout;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Random;
+import java.util.Set;
 
 import com.jfoenix.controls.JFXButton;
 
 import memoryDs.*;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import mainScene.mainSceneController;
 
 
 public class memdrawing 
 {
 	public AnchorPane anchorpane;
-	public int memory_size;
-	Map<String,ArrayList<segments>> map; 
-	int index;
-	public memdrawing(AnchorPane _achorpane , int _memory_size) 
+	public float memory_size;
+	Map<String,ArrayList<segment>> map; 
+	float index;
+	private operate oper;
+	private mainSceneController controller;
+	public void setOper(operate oper) {
+		this.oper = oper;
+	}
+	public operate getOper() {
+		return oper;
+	}
+public memdrawing(AnchorPane _achorpane , float _memory_size,operate _oper,mainSceneController _controller) 
 	{
 		anchorpane=_achorpane;
 		memory_size=_memory_size;
-		map =new HashMap<String,ArrayList<segments>>();
+		oper = _oper;
+		controller =_controller;
+		map =new HashMap<String,ArrayList<segment>>();
 	}
 	
 	public String randomColor() 
@@ -41,50 +58,44 @@ public class memdrawing
         return hex; 
 	}
 	
-	public Pane draw_partition (String Process_name,String _segmentname,int base,int limit,String color)
+	public Pane draw_partition (String Process_name,String _segmentname,float base,float limit,String color)
 	{
 		 VBox new_segment =new VBox();
 		 
 		 //hbox for label of start index
 		 HBox segment_start =new HBox();
-		 segment_start.getChildren().add(new Label(Integer.toString(base)));
-		// segment_start.setStyle("-fx-font-size:"+ 0.01*anchorpane.getHeight()+ ";");
+		 segment_start.getChildren().add(new Label(Float.toString(base)));;
 		 segment_start.setAlignment(Pos.TOP_LEFT);
 		
 		 //hbox for label of segment name
 		 HBox segment_name =new HBox();
 		 Label p_name =new Label(Process_name);
 		 Label seg_name = new Label(_segmentname); 
-		 
 		 segment_name.getChildren().addAll(p_name,seg_name);
-		// segment_name.setStyle("-fx-font-size:"+ 0.014*anchorpane.getHeight()+ ";");
 		 segment_name.setAlignment(Pos.CENTER);
 		 
 		 //hbox for label of end index 
-		 int end = base+limit-1;
+		 float end = base+limit-1;
 		 HBox segment_end =new HBox();
-		 segment_end.getChildren().add(new Label(Integer.toString(end)));
-		 //segment_end.setStyle("-fx-font-size:"+ 0.01*anchorpane.getHeight()+ ";");
+		 segment_end.getChildren().add(new Label(Float.toString(end)));
+		 segment_end.setStyle("-fx-text-fill: #ffffff;");
 		 segment_end.setAlignment(Pos.BOTTOM_LEFT);
-		 //add the data of partition
-		 //new_segment.setTop(segment_start);
-		 //new_segment.setBottom(segment_end);
-		// new_segment.setCenter(segment_name);
-		new_segment.getChildren().add(segment_name);
+		
+		 //layout and positioning
+		 new_segment.getChildren().add(segment_name);
 		 new_segment.setLayoutX(0);
 		 new_segment.setLayoutY(base*anchorpane.getHeight()/memory_size);
 		 new_segment.setPrefHeight(limit*anchorpane.getHeight()/memory_size);
 		 new_segment.setPrefWidth(anchorpane.getWidth());
-		System.out.println(anchorpane.getWidth());
+		 System.out.println(anchorpane.getWidth());
 		
-		while(anchorpane.getHeight()==0) {System.out.println(anchorpane);}
-		System.out.println(anchorpane.getHeight());
-		System.out.println(anchorpane);
 		 //style of the partition	 
 		 new_segment.setStyle( "-fx-border-style: solid;"
 		                     + "-fx-border-width: 2;"
 		                     + "-fx-border-radius: 5;"
 		                     + "-fx-border-color:"+ color +";");
+		
+		 //adding new box to memory layout
 		 anchorpane.getChildren().add(new_segment);
 		 System.out.println(randomColor());
 		 
@@ -95,7 +106,7 @@ public class memdrawing
 		 segment_delete.setAlignment(Pos.CENTER);
 		 clear.setOnAction(e->
 		 {
-			 anchorpane.getChildren().remove(new_segment);
+			deallocate_memorylayout(new_segment);   
 		 });
 		 
 		 // hover 
@@ -109,61 +120,53 @@ public class memdrawing
 			    	
 			    }
 			});
-		 
+		  
+		 //click
 		 	new_segment.setOnMouseClicked(e->
 		 	{
 		 		new_segment.getChildren().clear();
 		 		new_segment.getChildren().add(segment_delete);
 		 	});
-		 /*new_segment.onMouseClickedProperty().addListener((ov, oldValue, newValue) -> {
-			    if (newValue) {
-			    	new_segment.getChildren().removeAll();
-			    	new_segment.getChildren().addAll(segment_start,segment_end);
-			    } else {
-			    	new_segment.getChildren().add(segment_name);
-			    	//seg_name.setText("Not Hovered");
-			    }
-			});*/
 		 
 		 return new_segment;
-	
-	
 	}
 		
-	public void draw_process(String process_name,ArrayList<segments> segmentList )
+	public void draw_process(String process_name,ArrayList<segment> segmentList )
 	{
+		ArrayList<segment> new_list = new ArrayList<segment>();
+		new_list.addAll(segmentList);
+		
 		String color = randomColor();
-		segmentList.forEach((segment)->
-		{
-			  Platform.runLater(() -> {
-				    
-				  	Pane g =draw_partition(process_name, segment.getSegmentName(), segment.getSegmentBase(), segment.getSegmentLimit(), color);
-					System.out.println("process");
-				  	System.out.println(segment.getSegmentBase());
-					System.out.println(segment.getSegmentLimit());
-					segment.setBox(g);	
-					System.out.println(g.getHeight());
-					System.out.println(g);
-			    });
-			
+		System.out.println("process before drawing"+ process_name);
+		System.out.println("process_size "+new_list.size() );
+		for(segment s : new_list) {
+			Pane g =draw_partition(process_name, s.getSegmentName(), s.getSegmentBase(), s.getSegmentLimit(), color);
+			System.out.println("process");
+		  	System.out.println(s.getSegmentBase());
+			System.out.println(s.getSegmentLimit());
+			s.setBox(g);	
+			System.out.println(g.getHeight());
+			System.out.println(g);
+		}
 		
-		});
-		
-		map.put(process_name, segmentList);
+		System.out.println("process after drawing"+ process_name);
+		System.out.println("process_size "+new_list.size() );
+		System.out.println(new_list);
+		map.put(process_name, new_list);
 		
 	}
 
 	public void draw_holes (ArrayList<holes> holes_list)
 	{
 		index=0;
-		ArrayList<segments> list =new ArrayList<segments>();
+		ArrayList<segment> list =new ArrayList<segment>();
 		
-		
+		Collections.sort(holes_list, new sortByBase());
 		for(holes h: holes_list)
 		{
 			if(index < h.getBase()) 
 			{
-				segments used =new segments("used", 0);
+				segment used =new segment("used", 0);
 				used.setSegmentLimit(h.getBase()-index);
 				used.setSegmentBase(index);
 				list.add(used);
@@ -179,7 +182,7 @@ public class memdrawing
 		
 		if(index != memory_size)
 		{
-			segments used =new segments("used", 0);
+			segment used =new segment("used", 0);
 			used.setSegmentLimit(memory_size-index);
 			used.setSegmentBase(index);	
 			list.add(used);
@@ -193,7 +196,7 @@ public class memdrawing
 		System.out.println("size");
 		System.out.println(list.size());
 		
-		for(segments a : list) {
+		for(segment a : list) {
 			System.out.println("list items before calling draw process");
 			System.out.println(a.getSegmentBase());
 		}
@@ -201,5 +204,65 @@ public class memdrawing
 		
 		
 	}
+
+	public void deallocate_memorylayout(Pane clicked_box) 
+	{
+		Set set = map.entrySet();
+		 Iterator itr = set.iterator();
+		 boolean flag =false;
+		 segment seg = null ;
+		 while(itr.hasNext()) 
+		 {
+			Map.Entry entry=(Map.Entry) itr.next();
+			ArrayList<segment> f_list = (ArrayList<segment>) entry.getValue();
+			System.out.println("size");
+			System.out.println(f_list.size());
+			System.out.println("name");
+			System.out.println(entry.getKey());
+			
+			for(segment s : f_list) 
+			{
+				System.out.println("current segment:"+clicked_box+"tested segment"+s.getBox());
+				if(clicked_box==s.getBox())
+					{flag=true;
+					seg=s;	
+					break;}
+			}
+		 
+			if(flag) 
+			{
+				flag=false;
+				//oper.deallocate();
+				System.out.println("list size");
+				System.out.println(f_list.size());
+				if(entry.getKey()=="used") {
+					anchorpane.getChildren().remove(clicked_box);
+					f_list.remove(seg);
+					f_list.clear();
+					f_list.add(seg);
+				oper.DeallocateProcess(f_list );
+					
+				}
+				else {
+					for(segment s : f_list) 
+				{
+					System.out.println("segment");
+					System.out.println(s.getBox());
+					anchorpane.getChildren().remove(s.getBox());
+					
+				}
+					oper.DeallocateProcess(f_list );
+					
+					controller.deleteTab((String)entry.getKey());
+				
+					map.remove(entry.getKey(), entry.getValue());
+				}
+				
+				break;
+				
+			}
+		 }
+	}
+
 }
 
