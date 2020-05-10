@@ -120,7 +120,7 @@ public class startingSceneController implements Initializable {
         	holeSize.clear();
         	memorySize.setDisable(true);     	
         }
-  
+ 
     }
  
     @FXML

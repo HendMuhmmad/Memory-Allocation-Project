@@ -3,6 +3,7 @@ package mainScene;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Observable;
 
@@ -25,9 +26,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import memoryDs.holes;
 import memoryDs.operate;
 import memoryDs.segment;
-import memoryDs.segments;
 import memoryLayout.memdrawing;
 import segmentTab.segmentTableController;
 
@@ -59,10 +60,14 @@ public class mainSceneController {
    // private boolean full = false;
     private operate oper;
    
-    private ArrayList<segments> segmentList = new  ArrayList<segments>();
+    private ArrayList<segment> segmentList = new  ArrayList<segment>();
+    
     
     private memdrawing draw_memory ;
    
+    public TabPane getTabPane() {
+		return tabPane;
+	}
     public memdrawing getDraw_memory() {
 		return draw_memory;
 	}
@@ -74,9 +79,9 @@ public class mainSceneController {
     public void setOper(operate p)
     {
     	this.oper = p; 
-    draw_memory= new memdrawing(memoryAnchorPane, oper.getMemorySize());
+     draw_memory= new memdrawing(memoryAnchorPane, oper.getMemorySize(),oper, this);
    
-    draw_memory.draw_holes(oper.getHolesList());
+     Platform.runLater(() -> { draw_memory.draw_holes(oper.getHolesList());});
   
 
    
@@ -89,7 +94,7 @@ public class mainSceneController {
 	@FXML
     void nextSegment(ActionEvent event) {
     	
-    	segments seg = new segments(segmentName.getText(),Integer.parseInt(segmentSize.getText()));
+    	segment seg = new segment(segmentName.getText(),Integer.parseInt(segmentSize.getText()));
     	segmentList.add(seg);
     	segmentName.clear();
     	segmentSize.clear();
@@ -108,24 +113,84 @@ public class mainSceneController {
     void enterProcess(ActionEvent event) {
     	try {
 		
-    	segments seg = new segments(segmentName.getText(),Integer.parseInt(segmentSize.getText()));
+    	segment seg = new segment(segmentName.getText(),Integer.parseInt(segmentSize.getText()));
     	segmentList.add(seg);
     	if(oper.isType())
     	{
-    		oper.FirstFit(processName.getText(), segmentList);
-    	
+    		System.out.println("segment_list from algorithm before first fit");
+    		System.out.println(segmentList);
+    		 boolean checksegments=oper.FirstFit (processName.getText(), segmentList);
+    		 System.out.println("segment_list from algorithm after first fit");
+     		System.out.println(segmentList);
     		
+            if(checksegments==false){
+                System.out.println("there's no enough space2");
+                segmentList.clear();  
+              }
+              else {
+            	  System.out.println("segment_list from algorithm before allocate");
+          		System.out.println(segmentList); 
+                  oper.AllocateFirstFit(processName.getText() ,segmentList);
+                  System.out.println("segment_list from algorithm after allocate");
+          		System.out.println(segmentList);
+                  draw_memory.draw_process(processName.getText(), segmentList);
+                  //oper.AllocateBestFit(processname ,holeList ,segmentList);
+                  System.out.println("segId   " + "segBase   " + "    segLimit");
+                  for(segment op :segmentList){
+                      System.out.println(op.getSegmentName()+"         "+ op.getSegmentBase()+"        "+op.getSegmentLimit());
+
+                  }
+
+
+                  System.out.println("holes after alloc and before deallocation");
+                 // Collections.sort(holeList, new sortByBase());
+                  System.out.println("holeBase   " + "holeLimit   " + "holeEnd");
+                  for(holes op :oper.getHolesList()){
+                  System.out.println(op.getBase()+"           "+op.getLimit()+"            "+op.getEnd());
+
+                  }
+                
+                  
+              }
+
     	}
+
     	else
     	{
-    		oper.BestFit(processName.getText(), segmentList);
+    		boolean checksegments =oper.BestFit(processName.getText(), segmentList);
+    		 if(checksegments==false){
+                 System.out.println("there's no enough space2");
+                 segmentList.clear();  
+               }
+               else {             	 
+                   oper.AllocateBestFit(processName.getText() ,segmentList);
+                   draw_memory.draw_process(processName.getText(), segmentList);
+                   //oper.AllocateBestFit(processname ,holeList ,segmentList);
+                   System.out.println("segId   " + "segBase   " + "    segLimit");
+                   for(segment op :segmentList){
+                       System.out.println(op.getSegmentName()+"         "+ op.getSegmentBase()+"        "+op.getSegmentLimit());
+                   }
+                   System.out.println("holes after alloc and before deallocation");
+                   System.out.println("holeBase   " + "holeLimit   " + "holeEnd");
+                   for(holes op :oper.getHolesList()){
+                   System.out.println(op.getBase()+"           "+op.getLimit()+"            "+op.getEnd());
+                   }
+                   
+                   
+               }
+    	
+    	
+    	
+    	
     	}
   	
     		FXMLLoader tab_loader = new FXMLLoader(getClass().getResource("/segmentTab/segementTab.fxml"));
     		Tab new_tab;
     		new_tab = tab_loader.load();
     		segmentTableController controller = tab_loader.getController(); 		     
-    	    controller.setSegments(oper.getObservableList());
+    	    
+
+    		controller.setSegments(FXCollections.observableArrayList(segmentList));
     		controller.updateTable();
     		new_tab.setText(processName.getText());
     		tabPane.getTabs().add(new_tab);
@@ -135,7 +200,7 @@ public class mainSceneController {
         	processName.clear();
         	numOfSegments.clear();
         	segmentList.clear();
-        	oper.clearSegments();
+        //	oper.clearSegments();
     	} catch (IOException e) {
     		// TODO Auto-generated catch block
     		e.printStackTrace();

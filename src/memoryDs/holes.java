@@ -6,11 +6,11 @@ import java.util.Comparator;
 
 public class holes {
     
-    private int base;
-    private int limit;
-    private int end;
+    private float base;
+    private float limit;
+    private float end;
 
-    public holes(int start , int size){
+    public holes(float start , float size){
          this.base = start;
          this.limit = size;
          this.end = start+size-1;
@@ -19,47 +19,39 @@ public class holes {
     
 
     public holes() {
-        this.base = 0 ;
+        this.base = 0;
         this.end = 0;
         this.limit = 0;
     }
     
 
-    public int getBase() {
+    public float getBase() {
         return base;
     }
 
-    public void setBase(int base) {
+    public void setBase(float base) {
         this.base = base;
     }
 
-    public int getLimit() {
+    public float getLimit() {
         return limit;
     }
 
-    public void setLimit(int limit) {
+    public void setLimit(float limit) {
         this.limit = limit;
     }
 
-    public int getEnd() {
+    public float getEnd() {
         return end;
     }
 
-    public void setEnd(int end) {
+    public void setEnd(float end) {
         this.end = end;
     }
    
     
 }
-    class sortByBase implements Comparator<holes>  {
-		public int compare(holes h1 ,holes h2)
-		{
-			if(h1.getBase()>h2.getBase()) {return 1;}
-			else if (h1.getBase()<h2.getBase()) {return -1;}
-			return 0;
-	    }
-
-    }
+   
     
     class sortByLimit implements Comparator<holes>  {
 		public int compare(holes h1 ,holes h2)
@@ -70,4 +62,3 @@ public class holes {
 	    }
 
     }
-
