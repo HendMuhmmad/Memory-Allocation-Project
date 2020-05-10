@@ -14,6 +14,7 @@ import com.jfoenix.controls.JFXButton;
 import memoryDs.*;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
@@ -21,7 +22,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.TextAlignment;
 import mainScene.mainSceneController;
 
 
@@ -61,32 +64,47 @@ public memdrawing(AnchorPane _achorpane , float _memory_size,operate _oper,mainS
 	public Pane draw_partition (String Process_name,String _segmentname,float base,float limit,String color)
 	{
 		 VBox new_segment =new VBox();
-		 
+		
+		
 		 //hbox for label of start index
 		 HBox segment_start =new HBox();
-		 segment_start.getChildren().add(new Label(Float.toString(base)));;
+		 Label startIndex = new Label(Float.toString(base));
+		 startIndex.setStyle("-fx-text-fill: #ffffff;");
+		 segment_start.getChildren().add(startIndex);;
 		 segment_start.setAlignment(Pos.TOP_LEFT);
-		
+		 VBox.setVgrow(segment_start, Priority.ALWAYS);
+		 
+	   
 		 //hbox for label of segment name
 		 HBox segment_name =new HBox();
 		 Label p_name =new Label(Process_name);
 		 Label seg_name = new Label(_segmentname); 
+		 p_name.setStyle("-fx-text-fill: #ffffff;");
+		 seg_name.setStyle("-fx-text-fill: #ffffff;");
+		 seg_name.setPadding(new Insets(5));
 		 segment_name.getChildren().addAll(p_name,seg_name);
 		 segment_name.setAlignment(Pos.CENTER);
+		 VBox.setVgrow(segment_name, Priority.ALWAYS);
+		 
+		 
 		 
 		 //hbox for label of end index 
 		 float end = base+limit-1;
 		 HBox segment_end =new HBox();
-		 segment_end.getChildren().add(new Label(Float.toString(end)));
+		 Label endIndex = new Label(Float.toString(end));
+		 endIndex.setStyle("-fx-text-fill: #ffffff");
+		 segment_end.getChildren().add( endIndex);
 		 segment_end.setStyle("-fx-text-fill: #ffffff;");
 		 segment_end.setAlignment(Pos.BOTTOM_LEFT);
-		
+		 VBox.setVgrow(segment_end, Priority.ALWAYS);
+		 
+		 
 		 //layout and positioning
 		 new_segment.getChildren().add(segment_name);
-		 new_segment.setLayoutX(0);
+		 new_segment.setLayoutX(anchorpane.getWidth()/3);
 		 new_segment.setLayoutY(base*anchorpane.getHeight()/memory_size);
 		 new_segment.setPrefHeight(limit*anchorpane.getHeight()/memory_size);
-		 new_segment.setPrefWidth(anchorpane.getWidth());
+		 new_segment.setPrefWidth(anchorpane.getWidth()/3);
 		 System.out.println(anchorpane.getWidth());
 		
 		 //style of the partition	 
@@ -96,6 +114,7 @@ public memdrawing(AnchorPane _achorpane , float _memory_size,operate _oper,mainS
 		                     + "-fx-border-color:"+ color +";");
 		
 		 //adding new box to memory layout
+		 new_segment.setAlignment(Pos.CENTER);
 		 anchorpane.getChildren().add(new_segment);
 		 System.out.println(randomColor());
 		 
@@ -117,6 +136,8 @@ public memdrawing(AnchorPane _achorpane , float _memory_size,operate _oper,mainS
 			    } else {
 			    	new_segment.getChildren().clear();
 			    	new_segment.getChildren().add(segment_name);
+			    	 
+			    
 			    	
 			    }
 			});
